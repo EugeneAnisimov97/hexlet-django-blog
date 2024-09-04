@@ -1,19 +1,27 @@
+
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <title>{% block title %}Django на Хекслете{% endblock %}</title>
-</head>
-<body>
-<div id="sidebar">
-    {% block sidebar %}
-        <ul>
-            <li><a href="/">Главная</a></li>
-            <li><a href="/articles/">Статьи</a></li>
-        </ul>
-    {% endblock %}
-</div>
-<div id="content">
-    {% block content %}{% endblock %}
-</div>
-</body>
+<html lang="{{ LANGUAGE_CODE }}">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Django hexlet blog</title>
+  </head>
+  <body class="bg-light">
+    <div class="container mt-4">
+        <header>
+            {% include "navigation.html" %}
+        </header>
+        {% for message in messages %}
+        <div class="alert {% if message.tags %}{{ message.tags }}{% endif %}">
+            {{ message }}
+        </div>
+    {% endfor %}
+      </div>
+      
+      <div class="container">
+      <main>
+        {% block content %}
+        {% endblock %}
+      </main>
+      </div>
+      </body>
 </html>
